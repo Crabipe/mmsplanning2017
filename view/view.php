@@ -12,7 +12,7 @@ droits, il sera donc affiché après une requete PHP également -->
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Chez Jawad</title>
+        <title>Geneaweb</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href="bootstrap/css/style.css" rel="stylesheet">
         <link rel="shortcut icon" href="images/icone.ico" />

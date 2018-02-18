@@ -10,7 +10,7 @@ class ModelUtilisateur extends Model {
 
     /* Nom de l'utilisateur */
     protected $nom;
-
+    
     /* Prénom de l'utilisateur */
     protected $prenom;
 
@@ -22,6 +22,9 @@ class ModelUtilisateur extends Model {
 
     /* Email de l'utilisateur */
     protected $email;
+    
+    /* Compétences de l'utilisateur */
+    protected $competences;
 
     /* Etat de l'utilisateur (activé ou désactivé) */
     protected $etat;
@@ -32,9 +35,6 @@ class ModelUtilisateur extends Model {
     /* Identifiant de la table Modele_semaine */
     protected $id_modele_semaine;
 
-    /* Identifiant de la table Competence */
-    protected $id_competence;
-
     /*
      * Constructeur de la classe
      * @param String $nom Nom de l'utilisateur
@@ -42,25 +42,51 @@ class ModelUtilisateur extends Model {
      * @param String $adresse Adresse de l'utilisateur
      * @param String $telephone Téléphone de l'utilisateur
      * @param String $email Email de l'utilisateur
+     * @param String $competences Compétences de l'utilisateur
      * @param boolean $etat Etat de l'utilisateur
      * @param int $id_horaire Identifiant de la table Horaire
      * @param int $id_modele_semaine Identifiant de la table Modele_semaine
-     * @param int $id_competence Identifiant de la table Competence
      */
-    function __construct($nom = NULL, $prenom = NULL, $adresse = NULL, $telephone = NULL, $email = NULL, $etat = NULL, $id_horaire = NULL, $id_modele_semaine = NULL, $id_competence = NULL) {
-        if (!is_null($nom) && !is_null($prenom) && !is_null($adresse) && !is_null($telephone) && !is_null($email) && !is_null($etat) && !is_null($id_horaire) && !is_null($id_modele_semaine) && !is_null($id_competence)) {
+    function __construct($nom = NULL, $prenom = NULL, $adresse = NULL, $telephone = NULL, $email = NULL, $competences = NULL, $etat = NULL, $id_horaire = NULL, $id_modele_semaine = NULL) {
+        if (!is_null($nom) && !is_null($prenom) && !is_null($adresse) && !is_null($telephone) && !is_null($email) && !is_null($competences) && !is_null($etat) && !is_null($id_horaire) && !is_null($id_modele_semaine)) {
             $this->nom = $nom;
             $this->prenom = $prenom;
             $this->adresse = $adresse;
             $this->telephone = $telephone;
             $this->email = $email;
+            $this->competences = $competences;
             $this->etat = $etat;
             $this->id_horaire = $id_horaire;
             $this->id_modele_semaine = $id_modele_semaine;
-            $this->id_competence = $id_competence;
         }
     }
+    
+    /*
+     * Enregistre l'utilisateur dans la base de données
+     * @param String $nom Nom de l'utilisateur
+     * @param String $prenom Prénom de l'utilisateur
+     * @param String $adresse Adresse de l'utilisateur
+     * @param String $telephone Téléphone de l'utilisateur
+     * @param String $email Email de l'utilisateur
+     * @param String $competences Compétences de l'utilisateur
+     * @param boolean $etat Etat de l'utilisateur
+     */
+    public static function saveUtilisateur($nom, $prenom, $adresse, $telephone, $email, $competences, $etat) {
+        $table_name = static::$object;
 
+        $sql = "INSERT INTO $table_name (nom, prenom, adresse, telephone, email, competences, etat) VALUES (?,?,?,?,?,?,?)";
+        $values = array($nom, $prenom, $adresse, $telephone, $email, $competences, $etat);
+        try {
+            $req_prep = Model::$pdo->prepare($sql);
+            $req_prep->execute($values);
+        } catch (PDOException $e) {
+            if (strcmp($e->getCode(), "23000") == 0) {
+                return "error";
+            } else {
+                echo $e->getMessage();
+            }
+        }
+    }
 }
 
 ?>

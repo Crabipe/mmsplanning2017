@@ -25,9 +25,11 @@ class ModelHoraire extends Model {
 
     /*
      * Constructeur de la classe
-     * @param int $id_droit Identifiant de la table Droit
-     * @param int $id_utilisateur Identifiant de la table Utilisateur
-     * @param int $id_projet Identifiant de la table Projet
+     * @param String $libelle Libellé de l'horaire
+     * @param String $debut_matin Horaire de début du matin
+     * @param String $fin_matin Horaire de fin du matin
+     * @param String $debut_aprem Horaire de début de l'après-midi
+     * @param String $fin_aprem Horaire de de fin de l'après-midi
      */
     function __construct($libelle = NULL, $debut_matin = NULL, $fin_matin = NULL, $debut_aprem = NULL, $fin_aprem = NULL) {
         if (!is_null($libelle) && !is_null($debut_matin) && !is_null($fin_matin) && !is_null($debut_aprem) && !is_null($fin_aprem)) {
@@ -38,7 +40,6 @@ class ModelHoraire extends Model {
             $this->fin_aprem = $fin_aprem;
         }
     }
-
 }
 
 ?>

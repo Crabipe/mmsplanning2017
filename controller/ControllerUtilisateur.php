@@ -1,6 +1,8 @@
 <?php
 
+require_once File:: build_path(array('model', 'ModelUtilisateur.php'));
 require_once File:: build_path(array('model', 'ModelConnexion.php'));
+require_once File:: build_path(array('model', 'Model.php'));
 
 class ControllerUtilisateur {
 
@@ -10,11 +12,14 @@ class ControllerUtilisateur {
      * Fonction de création d'un utilisateur
      * Creation d'une nouvelle ligne dans la table utilisateur, vide
      */
+
     public static function create() {
         $dataUtilisateur['nom'] = '';
         $dataUtilisateur['prenom'] = '';
-        $dataUtilisateur['mail'] = '';
-        $dataUtilisateur['pseudo'] = '';
+        $dataUtilisateur['adresse'] = '';
+        $dataUtilisateur['telephone'] = '';
+        $dataUtilisateur['email'] = '';
+        $dataUtilisateur['login'] = '';
         $dataUtilisateur['mdp'] = '';
         $dataUtilisateur['confirmerMDP'] = '';
 
@@ -29,19 +34,24 @@ class ControllerUtilisateur {
      * Fonction invoquée lors de la création d'un utilisateur
      * Creation d'une nouvelle ligne dans la table utilisateur
      */
+
     public static function created() {
         $dataUtilisateur['nom'] = $_POST['nom'];
         $dataUtilisateur['prenom'] = $_POST['prenom'];
-        $dataUtilisateur['mail'] = $_POST['mail'];
-        $dataUtilisateur['pseudo'] = $_POST['pseudo'];
+        $dataUtilisateur['adresse'] = $_POST['adresse'];
+        $dataUtilisateur['telephone'] = $_POST['telephone'];
+        $dataUtilisateur['email'] = $_POST['email'];
+        $dataUtilisateur['competences'] = $_POST['competences'];
+        $dataUtilisateur['login'] = $_POST['login'];
         $dataUtilisateur['mdp'] = ControllerSecurity::chiffrer($_POST['mdp']);
         $dataUtilisateur['confirmerMDP'] = ControllerSecurity::chiffrer($_POST['confirmerMDP']);
         if ($dataUtilisateur['mdp'] == $dataUtilisateur['confirmerMDP']) {
-            ModelUtilisateur::saveUtilisateur($dataUtilisateur['nom'], $dataUtilisateur['prenom'], $dataUtilisateur['mail'], $dataUtilisateur['pseudo'], $dataUtilisateur['mdp']);
+            ModelUtilisateur::saveUtilisateur($dataUtilisateur['nom'], $dataUtilisateur['prenom'], $dataUtilisateur['adresse'], $dataUtilisateur['telephone'], $dataUtilisateur['email'], $dataUtilisateur['competences'], 1);
+            ModelConnexion::saveConnexion($dataUtilisateur['login'], $dataUtilisateur['mdp'], Model::$pdo->lastInsertId());
             $tab_Utilisateur = ModelUtilisateur::selectAll();
             $view = 'created';
             $pagetitle = 'Utilisateur créé';
-            $vLog = htmlspecialchars($dataUtilisateur['pseudo']);
+            $vLog = htmlspecialchars($dataUtilisateur['login']);
             require File::build_path(array('view', 'view.php'));
         } else {
             $type = "Veuillez saisir correctement le mot de passe.";
@@ -50,77 +60,9 @@ class ControllerUtilisateur {
     }
 
     /*
-     * Fonction de suppression d'un utilisateur
-     * Suppression d'une ligne dans la table utilisateur, vide
-     */
-    public static function delete() {
-        $idUtilisateur = $_GET['idUtilisateur'];
-        $view = 'delete';
-        $pagetitle = "Suppression de l'utilisateur";
-        $action = 'deleted';
-        require_once File:: build_path(array('view', 'view.php'));
-    }
-
-    /*
-     * Fonction invoquée lors de la suppression d'un utilisateur
-     * Suppression d'une ligne dans la table utilisateur
-     */
-    public static function deleted() {
-        $idUtilisateur = $_GET['idUtilisateur'];
-        ModelDocument::deleteDocumentUtilisateur($idUtilisateur);
-        ModelAcceder::deleteDroits($idUtilisateur);
-        ModelUtilisateur::delete($idUtilisateur);
-        
-        $view = 'deleted';
-        $pagetitle = "Suppression de l'utilisateur";
-        require_once File:: build_path(array('view', 'view.php'));
-    }
-
-    /*
-     * Fonction de modification des informations d'un utilisateur :
-     *  - Affichage d'un formulaire pour modifier les informations
-     *  - Stockage des informations entrées dans un tableau
-     *  - Modification de la base de données avec les champs du tableau
-     */
-    public static function update() {
-        $idUtilisateur = $_GET['idUtilisateur'];
-        $tab_Utilisateur = ModelUtilisateur::select($idUtilisateur);
-        $dataUtilisateur["nom"] = $tab_Utilisateur->get("nom");
-        $dataUtilisateur["prenom"] = $tab_Utilisateur->get("prenom");
-        $dataUtilisateur["mail"] = $tab_Utilisateur->get("mail");
-        $dataUtilisateur["admin"] = $tab_Utilisateur->get("admin");
-        if (ControllerSession::is_admin()){
-            $dataUtilisateur['admin'] = $tab_Utilisateur->get('admin');
-        }
-        $view = 'update';
-        $pagetitle = "Mise à jour de l'utilisateur";
-        $action = 'updated';
-        require_once File:: build_path(array('view', 'view.php'));
-    }
-
-    /*
-     * Fonction invoquée lors de la mise à jour d'un utilisateur
-     * Modification d'une ligne dans la table utilisateur
-     */
-    public static function updated() {
-        $dataUtilisateur['id'] = $_GET['idUtilisateur'];
-        $dataUtilisateur['nom'] = $_POST['nom'];
-        $dataUtilisateur['prenom'] = $_POST['prenom'];
-        $dataUtilisateur['mail'] = $_POST['mail'];
-        if (ControllerSession::is_admin()) {
-            $dataUtilisateur['admin'] = $_POST['admin'];
-        }
-
-        ModelUtilisateur::update($dataUtilisateur);
-        $tab_Utilisateur = ModelUtilisateur::selectAll();
-        $view = 'updated';
-        $pagetitle = 'Utilisateur modifié';
-        require File::build_path(array('view', 'view.php'));
-    }
-    
-    /*
      * Fonction de connexion d'un utilisateur
      */
+
     public static function connect() {
         if (isset($_SESSION['login'])) {
             $type = "Vous êtes déjà connecté";
@@ -134,10 +76,11 @@ class ControllerUtilisateur {
             require File::build_path(array('view', 'view.php'));
         }
     }
-    
+
     /*
      * Fonction invoquée lors de la connexion d'un utilisateur
      */
+
     public static function connected() {
         //on vérifie qu'il a bien entré le login
         if (empty($_POST['loginUser'])) {
@@ -159,7 +102,7 @@ class ControllerUtilisateur {
             if ($tab_client == false) {
                 $connexionErreur = "Nous n'avons aucun utilisateur avec ce login";
                 $pagetitle = 'Authentification';
-                $view = 'connectad';
+                $view = 'connected';
                 require File::build_path(array('view', 'view.php'));
                 //on vérifie l'identité de l'utilisateur
             } else {
@@ -189,38 +132,13 @@ class ControllerUtilisateur {
     /*
      * Déconnecte l'utilisateur et détruit la session
      */
+
     public static function deconnect() {
         unset($_SESSION['login']);
         unset($_SESSION['admin']);
         session_destroy();
         $view = 'deconnected';
         require File::build_path(array('view', 'view.php'));
-    }
-
-    /*
-     * Affiche la liste des utilisateurs
-     */
-    public static function readAll() {
-        $tab_Utilisateur = ModelUtilisateur::selectAll();
-        $view = 'list';
-        $pagetitle = 'liste des utilisateurs';
-        require_once File::build_path(array('view', 'view.php'));
-    }
-
-    /*
-     * Affiche les informations de l'utilisateur sélectionné
-     */
-    public static function read(){
-        if (ControllerSession::is_admin()) {
-            $id_utilisateur = $_GET['idUtilisateur'];
-        }else {
-            $id_utilisateur = $_SESSION['idUtilisateur'];
-        }
-        $profil = ModelUtilisateur::select($id_utilisateur);
-        $view = 'profil';
-        $pagetitle = 'Profil utilisateur';
-        require_once File::build_path(array('view', 'view.php'));
-
     }
 
 }
