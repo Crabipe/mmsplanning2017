@@ -11,6 +11,8 @@ session_start();
 require_once File::build_path(array('controller', 'ControllerUtilisateur.php'));
 require_once File::build_path(array('controller', 'ControllerView.php'));
 require_once File::build_path(array('controller', 'ControllerSecurity.php'));
+require_once File::build_path(array('controller', 'ControllerProjet.php'));
+require_once File::build_path(array('controller', 'ControllerTache.php'));
 
 /*
  * Verification que le controller existe (ne pas lever une erreur sinon)

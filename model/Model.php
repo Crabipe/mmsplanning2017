@@ -165,7 +165,7 @@ class Model {
      * Sauvegarde les données
      * @param $data Donnée à sauvegarder
      */
-    public static function save($data) {
+    public static function insert($data) {
         $table_name = static::$object;
 
         $sql = "INSERT INTO $table_name(";
