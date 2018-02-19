@@ -7,7 +7,9 @@ Cette page est en html, elle comporte un formulaire de création de projet -->
         <meta charset="UTF-8">
         <title>Chez Jawad</title>
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<script type="text/javascript" src="js/calendrier.js"></script>
         <link href="css/planning.css" rel="stylesheet">
+		
         <link rel="shortcut icon" href="images/icone.ico" />
     </head>
 
