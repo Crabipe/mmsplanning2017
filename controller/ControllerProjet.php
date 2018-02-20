@@ -64,6 +64,7 @@ public static function create() {
                 //on modifie la date pour l'enregistrer en DateTime
                 //ici le format entré jj/mm/aaaa devient aaaa-mm-jj
 <<<<<<< HEAD
+		if(isset($_POST['date_debut']&&isset($_POST['date_fin'])) {
                 $date_debut = Model::convertirDateBDD($_POST['date_debut']) ;
                 $date_fin = Model::convertirDateBDD($_POST['date_fin']) ;
 =======
@@ -73,30 +74,35 @@ public static function create() {
                 var_dump($date_fin);
 >>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
                 if (isset($_GET['id'])){
-                    $data = array(
-                        'id' => $_GET['id'],
-			'nom' => $_POST['nom'],
-			'adresse' => $_POST['adresse'],
-			'commentaire' => $_POST['commentaire'],
-                        'date_debut' => $date_debut,
-                        'id_chefProjet' => $_POST['id_chefProjet'],
-			'date_fin' => $date_fin,
-			'etat' => $_POST['etat'],
-			//'json' => $_POST['json'],
+			if(isset($_POST['nom'])&&isset($_POST['adresse'])isset($_POST['commentaire'])&&isset($_POST['id_chefProjet'])&&isset($_POST['etat'])) {
+                    		$data = array(
+                        	'id' => $_GET['id'],
+				'nom' => $_POST['nom'],
+				'adresse' => $_POST['adresse'],
+				'commentaire' => $_POST['commentaire'],
+                        	'date_debut' => $date_debut,
+                        	'id_chefProjet' => $_POST['id_chefProjet'],
+				'date_fin' => $date_fin,
+				'etat' => $_POST['etat'],
+				//'json' => $_POST['json'],
+			}
 		);
                 }else {
-                    $data = array(
-			'nom' => $_POST['nom'],
-			'adresse' => $_POST['adresse'],
-			'commentaire' => $_POST['commentaire'],
-                        'date_debut' => $date_debut,
-                        'id_chefProjet' => $_POST['id_chefProjet'],
-			'date_fin' => $date_fin,
-			'etat' => $_POST['etat'],
-			//'json' => $_POST['json'],
+			if(isset($_POST['nom'])&&isset($_POST['adresse'])isset($_POST['commentaire'])&&isset($_POST['id_chefProjet'])&&isset($_POST['etat'])) {
+                    		$data = array(
+				'nom' => $_POST['nom'],
+				'adresse' => $_POST['adresse'],
+				'commentaire' => $_POST['commentaire'],
+                        	'date_debut' => $date_debut,
+                        	'id_chefProjet' => $_POST['id_chefProjet'],
+				'date_fin' => $date_fin,
+				'etat' => $_POST['etat'],
+				//'json' => $_POST['json'],
+			}
 		);
                 }
 		echo $projet->save($data);
+		}
 	}
 	
 	public static function deleteAProject(){
