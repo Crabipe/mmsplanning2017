@@ -1,3 +1,11 @@
+function surligne(champ, erreur)
+{
+   if(erreur)
+      champ.style.backgroundColor = "#ffbbaa";
+   else
+      champ.style.backgroundColor = "";
+}
+
 function verifNom() {
 	var champ = document.getElementById('nom');
 	champ.addEventListener('blur', function() {
