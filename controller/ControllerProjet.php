@@ -64,7 +64,7 @@ public static function create() {
                 //on modifie la date pour l'enregistrer en DateTime
                 //ici le format entré jj/mm/aaaa devient aaaa-mm-jj
 <<<<<<< HEAD
-		if(isset($_POST['date_debut']&&isset($_POST['date_fin'])) {
+	    if(isset($_POST['date_debut']&&isset($_POST['date_fin'])) {
                 $date_debut = Model::convertirDateBDD($_POST['date_debut']) ;
                 $date_fin = Model::convertirDateBDD($_POST['date_fin']) ;
 =======
@@ -108,7 +108,10 @@ public static function create() {
 		);
                 }
 		echo $projet->save($data);
-		}
+	    }
+	    else {
+		static::create();
+	    }
 	}
 	
 	public static function deleteAProject(){
