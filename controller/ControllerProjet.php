@@ -85,6 +85,9 @@ public static function create() {
 				'date_fin' => $date_fin,
 				'etat' => $_POST['etat'],
 				//'json' => $_POST['json'],
+			} 
+			else {
+				static::create();
 			}
 		);
                 }else {
@@ -98,6 +101,9 @@ public static function create() {
 				'date_fin' => $date_fin,
 				'etat' => $_POST['etat'],
 				//'json' => $_POST['json'],
+			}
+			else {
+				static::create();
 			}
 		);
                 }
