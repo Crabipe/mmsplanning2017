@@ -75,6 +75,7 @@ class ControllerTache {
 
     public static function saveATask() {
         //on formate les heures en champs time
+	if(isset($_POST['heure_debut'])&&isset($_POST['minute_debut'])&&isset($_POST['heure_fin'])&&isset($_POST['minute_fin'])){
         $heure_debut = $_POST['heure_debut'] . ":" . $_POST['minute_debut'];
         $heure_fin = $_POST['heure_fin'] . ":" . $_POST['minute_fin'];
         //on formate les dates
@@ -83,27 +84,32 @@ class ControllerTache {
         
         $tache = new ModelTache();
         if (isset($_GET['id'])) {
-            $data = array(
-                'id' => $_GET['id'],
-                'libelle' => $_POST['libelle'],
-                'date_debut' => $_date_debut,
-                'date_fin' => $date_fin,
-                'heure_debut' => $heure_debut,
-                'heure_fin' => $heure_fin,
-                'id_projet' => $_GET['idProjet'],
-            );
+		if(isset($_POST['libelle'])&&isset($_PGET['idProjet'])) {
+            		$data = array(
+                	'id' => $_GET['id'],
+                	'libelle' => $_POST['libelle'],
+                	'date_debut' => $_date_debut,
+                	'date_fin' => $date_fin,
+                	'heure_debut' => $heure_debut,
+                	'heure_fin' => $heure_fin,
+                	'id_projet' => $_GET['idProjet']
+            		);
+		}
         } else {
-            $data = array(
-                'libelle' => $_POST['libelle'],
-                'date_debut' => $date_debut,
-                'date_fin' => $date_fin,
-                'heure_debut' => $heure_debut,
-                'heure_fin' => $heure_debut,
-                'id_projet' => $_GET['idProjet'],
-            );
+		if(isset($_POST['libelle'])&&isset($_PGET['idProjet'])) {
+            		$data = array(
+                	'libelle' => $_POST['libelle'],
+                	'date_debut' => $date_debut,
+                	'date_fin' => $date_fin,
+                	'heure_debut' => $heure_debut,
+                	'heure_fin' => $heure_debut,
+                	'id_projet' => $_GET['idProjet']
+            		);
+		}
         }
         var_dump($data);
         echo $tache->save($data);
+	}
     }
 
 }
