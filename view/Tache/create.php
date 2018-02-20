@@ -41,20 +41,30 @@
 						</div>
 						<div class="form-group row">
 							<label class="control-label col-md-2" for="heure_debut">Heure de début</label>
+<<<<<<< HEAD
 							<div class="col-md-1">
                                                             <input id="heure_debut" name="heure_debut" type="number" placeholder="hh" class="form-control input-md" required=""/>
 							</div>
 							<div class="col-md-1">
                                                             <input id="minute_debut" name="minute_debut" type="number" placeholder="mm" class="form-control input-md" required=""/>
+=======
+							<div class="col-md-3">
+								<input id="heure_debut" name="heure_debut" type="text" placeholder="hh:mm" class="form-control input-md" required=""/>
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 							</div>
 						</div>
 						<div class="form-group row">
 							<label class="control-label col-md-2" for="heure_fin">Heure de fin</label>
+<<<<<<< HEAD
 							<div class="col-md-1">
 								<input id="heure_fin" name="heure_fin" type="number" placeholder="hh" class="form-control input-md" required=""/>
 							</div>
                                                         <div class="col-md-1">
                                                             <input id="minute_fin" name="minute_fin" type="number" placeholder="mm" class="form-control input-md" required=""/>
+=======
+							<div class="col-md-3">
+								<input id="heure_fin" name="heure_fin" type="text" placeholder="hh:mm" class="form-control input-md" required=""/>
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 							</div>
 						</div>
 						<div class="form-group row">

@@ -172,7 +172,10 @@ class Model {
      * Sauvegarde les données
      * @param $data Donnée à sauvegarder
      */
+<<<<<<< HEAD
 
+=======
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
     public static function insert($data) {
         $table_name = static::$object;
 

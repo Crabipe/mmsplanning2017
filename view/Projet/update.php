@@ -18,12 +18,15 @@ Cette page est en html, elle comporte un formulaire de création de projet -->
         <!--Affichage des différents élements graphiques en utilisant le
         framework Bootstrap -->
         <div class="contenu">
+<<<<<<< HEAD
             <!-- On créer un tableau pour afficher le calendrier en JS -->
             <table class="ds_box" cellpadding="0" cellspacing="0" id="ds_conclass" style="display: none;">
                 <tr>
                     <td id="ds_calclass"></td>
                 </tr>
             </table>
+=======
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
             <form method="post" action="index.php?action=saveAProject&controller=projet&id=<?php echo $id; ?>">
                 <fieldset>
                     <legend>Modification d'un projet</legend>
@@ -55,13 +58,21 @@ Cette page est en html, elle comporte un formulaire de création de projet -->
                         <div class="form-group row">
                             <label class="control-label col-md-2" for="date_debut">Date de début</label>
                             <div class="col-md-3">
+<<<<<<< HEAD
                                 <input id="dateDebut" onclick="ds_sh(this)" name="date_debut" type="text" value="<?php echo htmlspecialchars($data['date_debut']) ?>" class="form-control input-md" required=""/>
+=======
+                                <input id="dateDebut" name="date_debut" type="text" value="<?php echo htmlspecialchars($data['date_debut']) ?>" class="form-control input-md" required=""/>
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
                             </div>
                         </div>
                         <div class="form-group row">
                             <label class="control-label col-md-2" for="date_fin">Date de fin</label>
                             <div class="col-md-3">
+<<<<<<< HEAD
                                 <input id="dateFin" onclick="ds_sh(this)" name="date_fin" type="text" value="<?php echo htmlspecialchars($data['date_fin']) ?>" class="form-control input-md" required=""/>
+=======
+                                <input id="dateFin" name="date_fin" type="text" value="<?php echo htmlspecialchars($data['date_fin']) ?>" class="form-control input-md" required=""/>
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
                             </div>
                         </div>
                         <div class="form-group row">
@@ -80,6 +91,9 @@ Cette page est en html, elle comporte un formulaire de création de projet -->
             </form>
         </div>
     </body>
+<<<<<<< HEAD
     <script type="text/javascript" src="js/calendrier.js"></script>
+=======
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 </html>
 

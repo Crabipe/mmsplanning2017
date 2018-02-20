@@ -1,10 +1,13 @@
 // <!-- <![CDATA[
+<<<<<<< HEAD
 var ds_oe;
 var ds_ce;
 
 
 ds_oe = ds_getel('ds_calclass');
 ds_ce = ds_getel('ds_conclass');
+=======
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 
 //initialisation de la date
 var ds_i_date = new Date();
@@ -12,9 +15,16 @@ ds_c_month = ds_i_date.getMonth() + 1;
 ds_c_year = ds_i_date.getFullYear();
 
 // Get Element By Id
+<<<<<<< HEAD
 function ds_getel(id) {
 	return document.getElementById(id);
 }
+=======
+/*
+function ds_getel(id) {
+	return document.getElementById(id);
+}*/
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 
 // On récupère les left et top de l'élement (css)
 function ds_getleft(el) {
@@ -35,7 +45,11 @@ function ds_gettop(el) {
 	}
 	return tmp;
 }
+<<<<<<< HEAD
 /*
+=======
+
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 setTimeout(
 	function(){
 		// Output Element
@@ -43,7 +57,11 @@ setTimeout(
 		// Container
 		ds_ce = ds_getel('ds_conclass');
 	}, 100
+<<<<<<< HEAD
 );*/
+=======
+);
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 
 // Output Buffering
 var ds_ob = ''; 
@@ -65,9 +83,15 @@ var ds_element;
  * @type Array 
  */
 var ds_monthnames = [
+<<<<<<< HEAD
 'Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin',
 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Décembre'
 ];
+=======
+'Janvier', 'F�vrier', 'Mars', 'Avril', 'Mai', 'Juin',
+'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'D�cembre'
+]; // You can translate it for your language.
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 
 /**
  * @var contient les jours de la semaine
@@ -75,7 +99,11 @@ var ds_monthnames = [
  */
 var ds_daynames = [
 'Dim', 'Lun', 'Mar', 'Me', 'Jeu', 'Ven', 'Sam'
+<<<<<<< HEAD
 ];
+=======
+]; // You can translate it for your language.
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 
 // On remplit le tableau de la page avec le calendrier
 function ds_template_main_above(t) {
@@ -96,6 +124,10 @@ function ds_template_main_above(t) {
 //Crétaion des lignes du calendrier
 function ds_template_day_row(t) {
 	return '<td class="ds_subhead">' + t + '</td>';
+<<<<<<< HEAD
+=======
+	// Define width in CSS, XHTML 1.0 Strict doesn't have width property for it.
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 }
 
 //Nouvelle semaine = retour à la ligne
@@ -111,6 +143,10 @@ function ds_template_blank_cell(colspan) {
 //création d'une "case" pour chaque jour
 function ds_template_day(d, m, y) {
 	return '<td class="ds_cell" onclick="ds_onclick(' + d + ',' + m + ',' + y + ')">' + d + '</td>';
+<<<<<<< HEAD
+=======
+	// Define width the day row.
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 }
 
 function ds_template_main_below() {
@@ -119,7 +155,13 @@ function ds_template_main_below() {
 
 // Remplissage du clendrier
 function ds_draw_calendar(m, y) {
+<<<<<<< HEAD
 	ds_ob_clean();
+=======
+	// First clean the output buffer.
+	ds_ob_clean();
+	// Here we go, do the header
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 	ds_echo (ds_template_main_above(ds_monthnames[m - 1] + ' ' + y));
 	for (i = 0; i < 7; i ++) {
 		ds_echo (ds_template_day_row(ds_daynames[i]));
@@ -136,6 +178,10 @@ function ds_draw_calendar(m, y) {
 	}
 	var first_day = new Date(y, (m-1), 1).getDay();
 	var first_loop = 1;
+<<<<<<< HEAD
+=======
+	// Start the first week
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 	ds_echo (ds_template_new_week());
 	// If sunday is not the first day of the month, make a blank cell...
 	if (first_day != 0) {
@@ -261,6 +307,11 @@ function ds_onclick(d, m, y) {
 //on affiche le calendrier au clic sur les éléments de date
 var date_debut = document.getElementById('dateDebut');
 var date_fin = document.getElementById('dateFin');
+<<<<<<< HEAD
 //date_debut.addEventListener("click", ds_sh(this));
 //date_fin.addEventListener("click", ds_sh(this));
+=======
+date_debut.addEventListener("click", ds_sh(this));
+date_fin.addEventListener("click", ds_sh(this));
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
 // ]]> -->

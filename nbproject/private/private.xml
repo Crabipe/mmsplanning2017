@@ -5,12 +5,17 @@
         <group>
             <file>file:/D:/UwAmp/www/mmsplanning2017/controller/routeur.php</file>
             <file>file:/D:/UwAmp/www/mmsplanning2017/view/Projet/create.php</file>
+<<<<<<< HEAD
             <file>file:/D:/UwAmp/www/mmsplanning2017/css/planning.css</file>
             <file>file:/D:/UwAmp/www/mmsplanning2017/view/Utilisateur/updated.php</file>
             <file>file:/D:/UwAmp/www/mmsplanning2017/js/calendrier.js</file>
             <file>file:/D:/UwAmp/www/mmsplanning2017/controller/ControllerTache.php</file>
             <file>file:/D:/UwAmp/www/mmsplanning2017/model/Model.php</file>
             <file>file:/D:/UwAmp/www/mmsplanning2017/bootstrap/css/style.css</file>
+=======
+            <file>file:/D:/UwAmp/www/mmsplanning2017/model/ModelProjet.php</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/model/ModelUtilisateur.php</file>
+>>>>>>> d950b9d3221c3b5aefe7abe8e175fa3b5b514d0e
             <file>file:/D:/UwAmp/www/mmsplanning2017/controller/ControllerProjet.php</file>
         </group>
     </open-files>
