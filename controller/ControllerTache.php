@@ -75,7 +75,7 @@ class ControllerTache {
 
     public static function saveATask() {
         //on formate les heures en champs time
-	if(isset($_POST['heure_debut'])&&isset($_POST['minute_debut'])&&isset($_POST['heure_fin'])&&isset($_POST['minute_fin'])){
+    if(isset($_POST['heure_debut'])&&isset($_POST['minute_debut'])&&isset($_POST['heure_fin'])&&isset($_POST['minute_fin'])){
         $heure_debut = $_POST['heure_debut'] . ":" . $_POST['minute_debut'];
         $heure_fin = $_POST['heure_fin'] . ":" . $_POST['minute_fin'];
         //on formate les dates
@@ -95,6 +95,9 @@ class ControllerTache {
                 	'id_projet' => $_GET['idProjet']
             		);
 		}
+		else {
+			static::create();	
+		}
         } else {
 		if(isset($_POST['libelle'])&&isset($_PGET['idProjet'])) {
             		$data = array(
@@ -106,10 +109,16 @@ class ControllerTache {
                 	'id_projet' => $_GET['idProjet']
             		);
 		}
+		else {
+			static::create();
+		}
         }
         var_dump($data);
         echo $tache->save($data);
 	}
+    }
+    else {
+    static::create();	
     }
 
 }
