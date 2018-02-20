@@ -1,3 +1,4 @@
+/* Fonction surlignant le champ si celui-ci est incorrect */
 function surligne(champ, erreur)
 {
    if(erreur)
