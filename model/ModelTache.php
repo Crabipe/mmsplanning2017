@@ -45,6 +45,21 @@ class ModelTache extends Model {
             $this->id_projet = $id_projet;
         }
     }
+    
+    /**
+     * Enregistrement d'un élément dans la base de données 
+     * (insertion ou modification)
+     * @param type $record liste des éléments à enregistrer
+     */
+    public static function save($record) {
+        $table_name = static::$object;
+
+        if(isset($record['id'])){
+            ModelTache::update($record);
+        } else {
+            ModelTache::insert($record);
+        }
+    }
 }
 
 ?>

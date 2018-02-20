@@ -2,6 +2,16 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/controller/routeur.php</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/view/Projet/create.php</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/css/planning.css</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/view/Utilisateur/updated.php</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/js/calendrier.js</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/controller/ControllerTache.php</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/model/Model.php</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/bootstrap/css/style.css</file>
+            <file>file:/D:/UwAmp/www/mmsplanning2017/controller/ControllerProjet.php</file>
+        </group>
     </open-files>
 </project-private>

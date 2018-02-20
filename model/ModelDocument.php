@@ -39,6 +39,43 @@ require_once File::build_path(array('model', 'Model.php'));
             $this->id_utilisateur = $id_utilisateur;
         }
     }
+    
+    /**
+     * Vérifie la validité des documents
+     * @param pdf|jpg $files
+     * @param int $idPersonne identifiant de la personne
+     */
+    public static function ajoutDoc($files, $idPersonne) {
+        for ($i = 0; $i < count($files); $i++) {
+            if ($files['document']['error'][$i] == 0 && 
+                    self::validExtention($files['document']['name'][$i])) {
+                $titre = $files['document']['name'][$i];
+                
+                //remplacer des espaces dans le nom du fichier par _
+                $files['document']['name'][$i] = str_replace(" ", "_", 
+                        $files['document']['name'][$i]);
+                
+                $files['document']['name'][$i] = md5(uniqid(rand(), true)) . 
+                        $files['document']['name'][$i];
+
+                $path = 'documents/' . $idUser;
+
+                if (!file_exists($path)) {
+                    mkdir($path, 0777, true);
+                }
+                $path = $path . "/" . $files['document']['name'][$i];
+
+
+
+                $deplacement = move_uploaded_file($_FILES['document']['tmp_name'][$i], $path);
+
+                $idDoc = ModelDocument::ajoutFichier($titre, $path, $idUser);
+
+                self::ajoutLigneDocumenter($idPersonne, $idDoc);
+            }
+        }
+    }
+    
 }
 
 ?>

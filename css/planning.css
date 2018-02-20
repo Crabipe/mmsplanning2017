@@ -61,7 +61,3 @@ legend {
 .ds_cell:hover {
 	background-color: #F3F3F3;
 } /* This hover code won't work for IE */
-
-#ds_ce {
-    display : none;
-}

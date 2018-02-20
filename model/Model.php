@@ -13,6 +13,7 @@ class Model {
     /*
      * Initialise la connexion à la base de données
      */
+
     public static function Init() {
         $login = Conf::getLogin();
         $hostname = Conf::getHostname();
@@ -36,6 +37,7 @@ class Model {
      * @return boolean | String  - false Il n'y a pas d'attribut
      *                        - Nom de l'attribut
      */
+
     public function get($nom_attribut) {
         if (property_exists($this, $nom_attribut))
             return $this->$nom_attribut;
@@ -48,6 +50,7 @@ class Model {
      * @param string $valeur Nouvelle valeur de l'attribut
      * @return boolean false Il n'y a pas d'attribut
      */
+
     public function set($nom_attribut, $valeur) {
         if (property_exists($this, $nom_attribut))
             $this->$nom_attribut = $valeur;
@@ -58,6 +61,7 @@ class Model {
      * Sélectionne toutes les données d'une table
      * @return
      */
+
     public static function selectAll() {
         $table_name = static::$object;
         $class_name = 'Model' . ucfirst(static::$object);
@@ -83,6 +87,7 @@ class Model {
      * @return boolean | Model[] - false Il n'y a pas de données
      *                          - Les données retournées
      */
+
     public static function select($primary_value) {
         $table_name = static::$object;
         $class_name = 'Model' . ucfirst(static::$object);
@@ -112,6 +117,7 @@ class Model {
      * Supprime une donnée dans une table
      * @param int $primary Clé primaire
      */
+
     public static function delete($primary) {
         $table_name = static::$object;
         $primary_key = static::$primary;
@@ -134,6 +140,7 @@ class Model {
      * Met à jour un élément dans une table
      * @param $data Donnée à mettre à jour
      */
+
     public static function update($data) {
         $table_name = static::$object;
         $primary_key = static::$primary;
@@ -165,7 +172,8 @@ class Model {
      * Sauvegarde les données
      * @param $data Donnée à sauvegarder
      */
-    public static function save($data) {
+
+    public static function insert($data) {
         $table_name = static::$object;
 
         $sql = "INSERT INTO $table_name(";
@@ -195,6 +203,36 @@ class Model {
             } else {
                 echo $e->getMessage();
             }
+        }
+    }
+
+    /**
+     * fonction qui convertit une date depuis le format aaaa-mm-jj vers jj/mm/aaaa
+     * @param type $date
+     * @return date au dormat aaaa-mm-jj
+     */
+    public static function convertirDateAffichage($date) {
+        list($an, $mois, $jour) = explode("-", $date);
+        $valide = checkdate($mois, $jour, $an);
+        if ($valide) {
+            return $jour . "/" . $mois . "/" . $an;
+        } else {
+            echo "Un problème est survenu";
+        }
+    }
+
+    /**
+     * fonction qui convertit une date depuis le format jj/mm/aaaa vers aaaa-mm-jj
+     * @param type $date
+     * @return date au dormat aaaa-mm-jj
+     */
+    public static function convertirDateBDD($date) {
+        list($jour, $mois, $an) = explode("/", $date);
+        $valide = checkdate($mois, $jour, $an);
+        if ($valide) {
+            return $an . "-" . $mois . "-" . $jour;
+        } else {
+            echo "La date saisie n'existe pas";
         }
     }
 
