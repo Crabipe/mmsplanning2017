@@ -165,7 +165,7 @@ function verifPassword() {
 	var regex = /^[a-zA-Z0-9._&~"'{(|`@)=}$¤+¨%*µ;:!§€[\^\/\]\#-]$/;
 	champ.addEventListener('blur', function() {
 		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
-			alert("Champ adresse non renseigné");
+			alert("Champ password non renseigné");
 			surligne(champ, true);
 			return false;
 		}
@@ -210,4 +210,142 @@ function verifLibelle() {
 		}
 	});
 }
+
+function verifHeureDebut() {
+	var champ = document.getElementById('heure_debut');
+	champ.addEventListener('blur', function() {
+		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
+			alert("Champ heure début non renseigné");
+			surligne(champ, true);
+			return false;
+		}
+		else 
+		{
+			if(champ.value.length > 2 || champ.value < 8 || champ.value > 19)
+			{
+				alert("Champ heure fin mal renseigné : taille supérieure à 2 caractères ou la valeur n'est pas comprise entre 8 et 19");
+				surligne(champ, true);
+				return false;
+			}
+			else
+			{
+				surligne(champ, false);
+				return true;
+			}
+		}
+	});
+}
+
+function verifHeureFin() {
+	var champ = document.getElementById('heure_fin');
+	champ.addEventListener('blur', function() {
+		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
+			alert("Champ heure fin non renseigné");
+			surligne(champ, true);
+			return false;
+		}
+		else 
+		{
+			if(champ.value.length > 2 || champ.value < 8 || champ.value > 19)
+			{
+				alert("Champ heure fin mal renseigné : taille supérieure à 2 caractères ou la valeur n'est pas comprise entre 8 et 19");
+				surligne(champ, true);
+				return false;
+			}
+			else
+			{
+				surligne(champ, false);
+				return true;
+			}
+		}
+	});
+}
+
+function verifMinuteDebut() {
+	var champ = document.getElementById('minute_debut');
+	champ.addEventListener('blur', function() {
+		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
+			alert("Champ minute début non renseigné");
+			surligne(champ, true);
+			return false;
+		}
+		else 
+		{
+			if(champ.value.length > 2 || champ.value > 59)
+			{
+				alert("Champ minute début mal renseigné : taille supérieure à 2 caractères ou la valeur n'est pas comprise entre 0 et 59");
+				surligne(champ, true);
+				return false;
+			}
+			else
+			{
+				surligne(champ, false);
+				return true;
+			}
+		}
+	});
+}
+
+function verifMinuteDebut() {
+	var champ = document.getElementById('minute_fin');
+	champ.addEventListener('blur', function() {
+		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
+			alert("Champ minute fin non renseigné");
+			surligne(champ, true);
+			return false;
+		}
+		else 
+		{
+			if(champ.value.length > 2 || champ.value > 59)
+			{
+				alert("Champ minute fin mal renseigné : taille supérieure à 2 caractères ou la valeur n'est pas comprise entre 0 et 59");
+				surligne(champ, true);
+				return false;
+			}
+			else
+			{
+				surligne(champ, false);
+				return true;
+			}
+		}
+	});
+}
+
+function verifDate() {
+	var regex = /^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}/;
+	var champ = document.getElementById('date_debut');
+	var tab = champ.split('/');
+	champ.addEventListener('blur', function() {
+		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
+			alert("Champ date début non renseigné");
+			surligne(champ, true);
+			return false;
+		}
+		else 
+		{
+			if(!regex.test(champ.value))
+			{
+				alert("Format incorrect. Format accepté : jj/mm/aaaa");
+				surligne(champ, true);
+				return false;
+			}
+			else
+			{
+				if((tab[0] < 1 && tab[0] > 31) || (tab[1] < 1 && tab[1] > 12) || (tab[2] < 2000 && tab[2] > 2100))
+				{
+					alert("Valeur inccorect : sélectionnez une date valide");
+					surligne(champ, true);
+					return false;
+				}
+				else
+				{
+					surligne(champ, false);
+					return true;
+				}
+			}
+		}
+	});	
+}
+	
+	
 
