@@ -311,7 +311,7 @@ function verifMinuteDebut() {
 	});
 }
 
-function verifDate() {
+function verifDateDebut() {
 	var regex = /^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}/;
 	var champ = document.getElementById('date_debut');
 	var tab = champ.split('/');
@@ -345,6 +345,61 @@ function verifDate() {
 			}
 		}
 	});	
+}
+
+function verifDateFin() {
+	var regex = /^[0-9]{2}[/]{1}[0-9]{2}[/]{1}[0-9]{4}/;
+	var champ = document.getElementById('date_fin');
+	var tab = champ.value.split('/');
+	champ.addEventListener('blur', function() {
+		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
+			alert("Champ date fin non renseigné");
+			surligne(champ, true);
+			return false;
+		}
+		else 
+		{
+			if(!regex.test(champ.value))
+			{
+				alert("Format incorrect. Format accepté : jj/mm/aaaa");
+				surligne(champ, true);
+				return false;
+			}
+			else
+			{
+				if((tab[0] < 1 && tab[0] > 31) || (tab[1] < 1 && tab[1] > 12) || (tab[2] < 2000 && tab[2] > 2100))
+				{
+					alert("Valeur inccorect : sélectionnez une date valide");
+					surligne(champ, true);
+					return false;
+				}
+				else
+				{
+					surligne(champ, false);
+					return true;
+				}
+			}
+		}
+	});	
+}
+
+function verifDate() {
+	var date_debut = document.getElementById('date_debut');
+	var date_fin = document.getElementById('date_fin');
+	tabdeb = (date_debut.value.split(/[- //]/));
+    tabfin = (date_fin.value.split(/[- //]/));
+	Odeb = new Date(tabdeb[2],tabdeb[1],tabdeb[0]);
+    Ofin = new Date(tabfin[2],tabfin[1],tabfin[0]);
+    if(Odeb > Ofin) {
+        alert ("La date de fin ne doit pas être antérieure à la date de début.");
+        surligne(date_fin, true);
+        return false;
+    }
+	else
+	{
+		surligne(date_fin, false);
+		return true;
+	}	
 }
 	
 	
