@@ -162,7 +162,7 @@ function verifMail() {
 
 function verifPassword() {
 	var champ = document.getElementById('mdp');
-	var regex = /^[a-zA-Z0-9._&~"'{(|`@)=}$¤+¨%*µ;:!§€[\^\/\]\#-]$/;
+	var regex = /^(?=[0-9a-z]+$)(?=.*[0-9]+)(?=.*[a-z]+).+$/i;
 	champ.addEventListener('blur', function() {
 		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
 			alert("Champ password non renseigné");
@@ -286,7 +286,7 @@ function verifMinuteDebut() {
 	});
 }
 
-function verifMinuteDebut() {
+function verifMinuteFin() {
 	var champ = document.getElementById('minute_fin');
 	champ.addEventListener('blur', function() {
 		if (champ.value.length==0 || champ.value.replace(/\s/g,"").length==0){
